@@ -4,7 +4,7 @@ RECTANGLE Normal -128 -40 128 40
 WINDOW 0 0 -40 Bottom 2
 SYMATTR Prefix X
 SYMATTR Value EPC2034C
-SYMATTR ModelFile C:\Users\Kevin\Documents\LTspice\EPCGaNLibrary\EPCGaNLibrary.lib
+SYMATTR ModelFile EPCGaNLibrary.lib
 WINDOW 3 0 40 Top 2
 PIN -128 0 LEFT 8
 PINATTR PinName gatein
