@@ -1,15 +1,15 @@
-# Wireless-Power-Transfer
-Design and LTspice simulation of a 6.78 MHz and 13.56 MHz GaN-based Class E amplifier for wireless power transfer.
+# Wireless Power Transfer
+Design and LTspice simulation of a 6.78 MHz and 13.56 MHz GaN based Class E amplifier for wireless power transfer.
 
 ## Overview
-This project was completed by a four member, Texas Instruments-sponsored, senior design team at Southern Methodist University. The project's objective was to develop a wireless power transfer device capable of powering an LED through a 6 cm drywall. Through multiple iterations, the final prototype operated at 6.78 MHz and delivered 0.667W to the LED.
+This project was completed by a four member, Texas Instruments sponsored, senior design team at Southern Methodist University. The project's objective was to develop a wireless power transfer device capable of powering an LED through a 6 cm drywall. Through multiple iterations, the final prototype operated at 6.78 MHz and delivered 0.667W to the LED.
 
 ## My Contribution
-My primary responsibility in the team was the design and implementation of the Class E amplifier. I developed and refined amplifier designs using LTspice, adjusting circuit parameters to achieve zero-voltage switching (ZVS). I also sourced components and assembled the amplifier on the respective development board. This repository primarily documents my amplifier design process, LTspice simulations, and associated waveforms.
+My primary responsibility in the team was the design and implementation of the Class E amplifier. I developed and refined amplifier designs using LTspice, adjusting circuit parameters to achieve zero voltage switching (ZVS). I also sourced components and assembled the amplifier on the respective development board. This repository primarily documents my amplifier design process, LTspice simulations, and associated waveforms.
 
 ## Design Methodology
 ### Theoretical Design
-The amplifier design was based on the Class E topology described in [N. O. Sokal's Class-E RF Power Amplifiers](https://link.springer.com/chapter/10.1007/0-306-47950-8_14). The circuit uses a GaN transistor as a high-frequency switch, RF choke inductor, a shunt capacitor, and resonant circuit. Initial component values were calculated using Sokal's design equations, which relate the components value to operating frequency, load resistance, and loaded quality factor.
+The amplifier design was based on the Class E topology described in [N. O. Sokal's Class E RF Power Amplifiers](https://link.springer.com/chapter/10.1007/0-306-47950-8_14). The circuit uses a GaN transistor as a high frequency switch, RF choke inductor, a shunt capacitor, and resonant circuit. Initial component values were calculated using Sokal's design equations, which relate the components value to operating frequency, load resistance, and loaded quality factor.
 
 ### LTspice Simulation and Tuning
 The amplifier was modeled in LTspice using EPC GaN transistor models. A resistive load was used to approximate the transmitting antenna, following the simplified load model presented in Sokal's paper. This approximation does not capture the antenna's reactive impedance.
@@ -23,7 +23,7 @@ The initial simulation was developed at 10 MHz to verify and test out the findin
 
 A simplified voltage controlled switch from LTspice library was used instead of a specific GaN transistor. Component values were calculated using Sokal's design equations and implemented directly without further tuning. The resulting drain voltage waveform reached approximately zero when the transistor turned on, demonstrating ZVS.
 
-This proof of concept established a starting point for subsequent designs incorporating device-specific transistor characteristics.
+This proof of concept established a starting point for subsequent designs incorporating device specific transistor characteristics.
 
 ### Initial GaN Design (13.56MHz)
 ![Schematic of the initial design](Figures/Initial%20design%20-%2013.56MHz/Class%20E%20amplifier%20schematic.png)
@@ -41,7 +41,7 @@ The final system successfully delivered power to an LED through 6 cm of drywall.
 
 ## Simulation Result
 ### Transistor Switching Behavior
-The simulation of the 6.78 MHz final design produced the characteristic of a class E amplifier. When the transistor is off, the drain voltage rises and falls as the resonant network shapes the waveform. The voltage approaches zero when the  transistor turns on and remains near zero during the on-state, demonstrating switching behavior consistent with ZVS.
+The simulation of the 6.78 MHz final design produced the characteristic of a class E amplifier. When the transistor is off, the drain voltage rises and falls as the resonant network shapes the waveform. The voltage approaches zero when the  transistor turns on and remains near zero during the on state, demonstrating switching behavior consistent with ZVS.
 ![Amplifier VG, VDS, and IDS](Figures/Final%20design%20-%206.78MHz/Class%20E%20amplifier%20switching.png)
 
 ### Amplifier Output 
@@ -54,11 +54,16 @@ The final design produced an approximately sinusoidal voltage and current wavefo
 * [EPC GaN LTspice library](https://epc-co.com/epc/design-support/device-models) (require for 13.56MHz and 6.78MHz designs)
 
 ### Instructions
-* Clone or download this repository.
-* Download the EPC GaN LTspice model library from the link above and extract EPCGaNLibrary.lib.
-* Place EPCGaNLibrary.lib in the same directory as the .asc and .asy files for the corresponding GaN amplifier simulation.
-* Open the desired .asc schematic in LTspice.
-* Click Run to execute the transient simulation.
+1. Clone or download this repository.
+2. Download the EPC GaN LTspice model library from the link above and extract EPCGaNLibrary.lib.
+3. Place EPCGaNLibrary.lib in the same directory as the .asc and .asy files for the corresponding GaN amplifier simulation.
+4. Open the desired .asc schematic in LTspice.
+5. Click Run to execute the transient simulation.
+
+### Expected Output
+After running the final 6.78 MHz simulation, LTspice should automatically display five waveforms:
+* Transistor Switching: The first three plots, from top to bottom, show the gate voltage, drain source voltage, and transistor switching current.
+* Amplifier Output: The last two plots show approximately sinusoidal voltage and current waveforms across the 5 Ω resistive load at 6.78 MHz.
 
 ### Viewing the Waveforms
 The default .plt file automatically displays both transistor switching and amplifier output waveforms when the simulation is run. Separate .plt files are also provided for the individual switching and output plots shown in this README. These can be loaded through Plot Settings → Open Plot Settings File in LTspice.
